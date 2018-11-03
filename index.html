@@ -92,16 +92,18 @@
         document.addEventListener("keyup", keyUpHandler, false);   
         
         var el = document.getElementsByTagName("canvas")[0];
-        el.addEventListener("touchstart", drawBall());
-        el.addEventListener("touchmove", drawBall());
-        el.addEventListener("touchend", drawBall());
-        el.addEventListener("touchcancel", drawBall());        
+        el.addEventListener("touchstart", moveRigth());
+        el.addEventListener("touchmove", moveRigth());
+        el.addEventListener("touchend", moveRigth());
+        el.addEventListener("touchcancel", moveRigth());        
         
         paddleX=0;
         
         ctx.font = "30px Arial";
 
-        
+        function moveRigth() {
+            rightPressed = true;
+        }
         
         function keyDownHandler(e) {
             if(e.keyCode == 39) {
