@@ -91,6 +91,12 @@
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);   
         
+        var el = document.getElementsByTagName("canvas")[0];
+        el.addEventListener("touchstart", drawBall());
+        el.addEventListener("touchmove", drawBall());
+        el.addEventListener("touchend", drawBall());
+        el.addEventListener("touchcancel", drawBall());        
+        
         paddleX=0;
         
         ctx.font = "30px Arial";
