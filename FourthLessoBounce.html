@@ -9,8 +9,8 @@
     	canvas { background: #eee; display: block; margin: 0 auto; }
     </style>
 </head>
-<body>
-
+<body> 
+<button onclick="myFunction()">Click me</button>
 <canvas id="myCanvas" width="640" height="480"></canvas>
 <script>
         var canvas = document.getElementById("myCanvas");
@@ -19,7 +19,7 @@
         var y = 150;
         var dx = 2;
         var dy = 2;
-        var radious=10
+        var radious=10 
         var paddleHeight = 10;
         var paddleWidth = 75;
         var paddleX = (canvas.width-paddleWidth)/2;
@@ -112,7 +112,7 @@
             } 
             else if (e.keyCode==32) {
                x=0;
-               y=150;
+               y=150;    
                lives=5;
                points=0;
                initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
@@ -243,5 +243,6 @@
         
 
 </script>
+
 </body>
 </html>
