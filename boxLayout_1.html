@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="boxLayout.css" type="text/css"/>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body id="idbody">
+        <script>  
+             function myFunction() {
+                 var x = document.getElementById("myDIV");
+                 x.appendChild(node);
+             }
+             
+             function myFunction1() {
+                var para = document.createElement("box");
+                para.className = "box";
+                var t = document.createTextNode("This is a div and text node");
+                para.appendChild(t);
+                document.getElementById("myDIV").appendChild(para);
+
+                    var element = document.getElementById("myDIV");
+                    var numberOfChildren = element.getElementsByTagName('*').length ;
+                window.alert(numberOfChildren);
+            }
+        </script>
+
+        <div id="myDIV" class="game-board">
+          <div class="box">200px x 200px</div>
+          <div class="box">200px x 200px</div>
+        </div>
+         <button onclick="myFunction1()">Click me</button>
+    </body>
+</html>
