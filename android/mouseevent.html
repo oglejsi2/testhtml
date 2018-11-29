@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+    <head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="John Doe">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+</head>
+<body>    
+<button id="btnLeft" onmousedown="mouseDown()" onmouseup="mouseUp()">Click me</button> 
+<button id="btnRight" onmousedown="mouseDown()" onmouseup="mouseUp()">Click me</button> 
+<p id="myP" onmousedown="mouseDown()" onmouseup="mouseUp()">
+Click the text! The mouseDown() function is triggered when the mouse button is pressed down over this paragraph, and sets the color of the text to red. The mouseUp() function is triggered when the mouse button is released, and sets the color of the text to green.
+</p>
+
+<script>
+var btnLeft = document.getElementById("btnLeft");
+var btnRight = document.getElementById("btnRight");
+var box = document.getElementById("box");
+
+// Set up event handlers for the HTML elements in JavaScript, using modern
+// standards, not in the HTML. Both the left and right buttons need to 
+// call the same function, but with a different argument value. This is
+// why the events are being bound to another function that wraps the actual
+// call to the move function (so that an argument can be passed).
+btnLeft.addEventListener( "mousedown", mouseDown);
+btnRight.addEventListener("mousedown", mouseDown);
+btnLeft.addEventListener("mouseup", mouseUp);
+btnRight.addEventListener("mouseup", mouseUp);
+    
+function mouseDown(event) {
+    event.preventDefault();
+    document.getElementById("myP").style.color = "red";
+}
+
+function mouseUp(event) {
+    event.preventDefault();
+    document.getElementById("myP").style.color = "green";
+}
+</script>
+
+</body>
+</html>

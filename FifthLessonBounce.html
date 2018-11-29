@@ -2,24 +2,25 @@
 <html>
 <head>
     <link rel="icon" href="data:,">
-    <meta charset="utf-8" />
+    <meta name="viewport" content="width=640,user-scalable=no">
     <title>Breaking bricks</title>
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
-    </style>
+    </style> 
 </head>
-<body> 
- 
-<canvas id="myCanvas" width="640" height="480"></canvas>
-<script>  
-        var canvas = document.getElementById("myCanvas");  
+<body onload="startup()">
+<button id="leftb" onmousedown="myFunctionLeft()" onmouseup="myFunctionLeftUp()">Click me</button>    
+<button id="rightb" onmousedown="myFunction()" >Click me</button>
+<canvas id="myCanvas" width="640" height="640"></canvas>
+<script>
+        var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         var x = 0;
         var y = 150;
-        var dx = 2;
-        var dy = 2;  
-        var radious=10
+        var dx = 2; 
+        var dy = 2;
+        var radious=10;
         var paddleHeight = 10;
         var paddleWidth = 75;
         var paddleX = (canvas.width-paddleWidth)/2;
@@ -35,10 +36,97 @@
         var brickRows=3;     
         var bricks = [];
         
-        function myFunction(value, index, array) {
-            var txt;
-            txt = txt + value; 
+        
+        function startup() {                  
+            var elem = document.getElementsByTagName("canvas")[0];
+            elem.addEventListener("touchstart", handleStart, false);
+            elem.addEventListener("touchend", handleEnd, false);
+            elem.addEventListener("touchcancel", handleEnd, false);
+            var logelem = document.getElementById("log");
+            logelem.innerHTML="log handle start";  
+        }
+        function handleStart(evt) {
+           
+            var el = document.getElementsByTagName("canvas")[0];
+            var ctx = el.getContext("2d");
+            var touches = evt.changedTouches;
+
+            clientX = evt.touches[0].clientX;
+            var logelem = document.getElementById("log");
+            logelem.innerHTML="start";
+            
+            if(clientX > 500 && clientX>0) {
+                rightPressed = false;
+                leftPressed = false;
+                paddleX += 40;
+            }
+            else  {
+                leftPressed = false;
+                rightPressed = false;
+                paddleX -= 40;
+            }            
+            
+                
+        }
+        
+        function handleEnd(evt) {
+            clientX = 0;
+            logelem.innerHTML=clientX;
+            leftPressed = false;
+            rightPressed = false;
+            logelem.innerHTML="end";
+            
         }        
+        
+        function myFunction(value, index, array) {
+               /*
+                x=0;
+               y=150;
+               lives=5;
+               points=0;
+               initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
+             */
+            leftPressed = false;
+            rightPressed = true;
+        }        
+        
+        function myFunctionUp(value, index, array) {
+               /*
+                x=0;
+               y=150;
+               lives=5;
+               points=0;
+               initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
+             */
+            leftPressed = false;
+            rightPressed = false;
+        }                
+        
+        function myFunctionLeft(value, index, array) {
+               /*
+                x=0;
+               y=150;
+               lives=5;
+               points=0;
+               initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
+             */
+            event.preventDefault();
+            leftPressed = true;
+            rightPressed = false;
+        }        
+        
+        function myFunctionLeftUp(value, index, array) {
+               /*
+                x=0;
+               y=150;
+               lives=5;
+               points=0;
+               initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
+             */
+            event.preventDefault();
+            leftPressed = false;
+            rightPressed = false;
+        }          
         
         function collisionBrick(pbricks, pbrickWidth, pbrickHeight, pxBall, pyBall) { 
         
@@ -90,20 +178,19 @@
         
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);   
-        
+
+    /*
         var el = document.getElementsByTagName("canvas")[0];
-        el.addEventListener("touchstart", moveRigth());
-        el.addEventListener("touchmove", moveRigth());
-        el.addEventListener("touchend", moveRigth());
-        el.addEventListener("touchcancel", moveRigth());        
-        
+        el.addEventListener("touchstart", drawBall());
+        el.addEventListener("touchmove", drawBall());
+        el.addEventListener("touchend", drawBall());
+        el.addEventListener("touchcancel", drawBall());        
+*/        
         paddleX=0;
         
         ctx.font = "30px Arial";
 
-        function moveRigth() {
-            rightPressed = true;
-        }
+        
         
         function keyDownHandler(e) {
             if(e.keyCode == 39) {
@@ -165,7 +252,13 @@
         }
 
         function draw() {  
-            
+            /*
+            var elem = document.getElementById('myCanvas');
+            elem.addEventListener("touchstart", handleStart, false);
+            */
+           
+
+           
             if (lives<=0) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.beginPath();
@@ -233,17 +326,18 @@
                 paddleX -= 7;
             }
             
-            
            
+
         }
 
-            initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);
-            setInterval(draw, 10);
+            initialBricks(brickWidth, brickHeight, brickOffset, brickWallOffset, brickCols, brickRows);           
+            setInterval(draw, 20);
 
 
        
         
 
 </script>
+Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
 </body>
 </html>

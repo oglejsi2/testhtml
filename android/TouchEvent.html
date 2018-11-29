@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html> 
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="startup()">
+        <canvas id="canvas" width="512" height="180" style="border:solid black 1px;">
+                Your browser does not support canvas element.
+        </canvas>
+        <script>
+            function startup() {
+              var el = document.getElementsByTagName("canvas")[0];
+             el.addEventListener("touchstart", handleStart, false);
+             el.addEventListener("click",handleStart,false);
+              var elem = document.getElementById('canvas');
+              elem.onclick = function() { alert("hello world startup"); }
+/*              
+              el.addEventListener("touchend", handleEnd, false);
+              el.addEventListener("touchcancel", handleCancel, false);
+              el.addEventListener("touchmove", handleMove, false);
+*/              
+              console.log("initialized.");
+              var logelem = document.getElementById("log");
+               logelem.innerHTML="log handle initilaized";    
+            }     
+            
+            function handleStart(evt) {
+                  var x = event.clientX;
+                    var y = event.clientY;
+               var elem = document.getElementById('canvas');
+//                elem.onclick = function() { alert("hello world 1"); }
+                
+                var logelem = document.getElementById("log");
+               logelem.innerHTML="log handle start 1";                
+                
+                evt.preventDefault();
+                var el = document.getElementsByTagName("canvas")[0];
+                var ctx = el.getContext("2d");
+                var touches = evt.changedTouches;
+                
+                  logelem.innerHTML="log handle start 10";  
+                
+                if (touches==null) {
+                      logelem.innerHTML="log handle start 15";
+                    logelem.innerHTML=x;
+                     logelem.innerHTML="log handle start 20";
+                } else {
+                      logelem.innerHTML="log handle start 25";
+                          
+                           clientX = evt.touches[0].clientX;
+                             logelem.innerHTML="log handle start 30";
+                             logelem.innerHTML=touches.length;
+                             logelem.innerHTML=clientX;
+                }
+                
+       
+
+                      
+
+                //logelem.innerHTML=x;
+
+                
+               
+                  
+              }
+                  function narisiKvadrat() {
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext("2d");
+                    ctx.beginPath();
+                    ctx.rect(20, 40, 50, 50);
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+        </script>
+        <br>
+            <button onclick="startup()">Initialize</button>
+        <br>
+        <br>
+            <button onclick="narisiKvadrat()">Initialize1</button>
+        <br>    
+        
+            Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+    </body>
+</html>
